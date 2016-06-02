@@ -1,0 +1,198 @@
+// -*- C++ -*-
+/*!
+ * @file  EducatorVehicle.cpp
+ * @brief Educator Vehicle
+ * @date $Date$
+ *
+ * @author 宮本信彦
+ * n-miyamoto@aist.go.jp
+ * 産業技術総合研究所　
+ * ロボットイノベーション研究センター　
+ * ロボットソフトウェアプラットフォーム研究チーム
+ *
+ * LGPL
+ *
+ * $Id$
+ */
+
+#include "EducatorVehicle.h"
+
+// Module specification
+// <rtc-template block="module_spec">
+static const char* educatorvehicle_spec[] =
+  {
+    "implementation_id", "EducatorVehicle",
+    "type_name",         "EducatorVehicle",
+    "description",       "Educator Vehicle",
+    "version",           "1.0.0",
+    "vendor",            "AIST",
+    "category",          "MobileRobot",
+    "activity_type",     "PERIODIC",
+    "kind",              "DataFlowComponent",
+    "max_instance",      "1",
+    "language",          "C++",
+    "lang_type",         "compile",
+    // Configuration variables
+    "conf.default.wheelRadius", "0.028",
+    "conf.default.wheelDistance", "0.05925",
+    "conf.default.medium_motor_speed", "1.6",
+
+    // Widget
+    "conf.__widget__.wheelRadius", "text",
+    "conf.__widget__.wheelDistance", "text",
+    "conf.__widget__.medium_motor_speed", "text",
+    // Constraints
+
+    "conf.__type__.wheelRadius", "double",
+    "conf.__type__.wheelDistance", "double",
+    "conf.__type__.medium_motor_speed", "double",
+
+    ""
+  };
+// </rtc-template>
+
+/*!
+ * @brief constructor
+ * @param manager Maneger Object
+ */
+EducatorVehicle::EducatorVehicle(RTC::Manager* manager)
+    // <rtc-template block="initializer">
+  : RTC::DataFlowComponentBase(manager),
+    m_velocity2DIn("velocity2D", m_velocity2D),
+    m_angleIn("angle", m_angle),
+    m_odometryOut("odometry", m_odometry),
+    m_ultrasonicOut("ultrasonic", m_ultrasonic),
+    m_gyroOut("gyro", m_gyro),
+    m_colorOut("color", m_color),
+    m_color_reflectOut("color_reflect", m_color_reflect),
+    m_touchOut("touch", m_touch)
+
+    // </rtc-template>
+{
+}
+
+/*!
+ * @brief destructor
+ */
+EducatorVehicle::~EducatorVehicle()
+{
+}
+
+
+
+RTC::ReturnCode_t EducatorVehicle::onInitialize()
+{
+  // Registration: InPort/OutPort/Service
+  // <rtc-template block="registration">
+  // Set InPort buffers
+  addInPort("velocity2D", m_velocity2DIn);
+  addInPort("angle", m_angleIn);
+  
+  // Set OutPort buffer
+  addOutPort("odometry", m_odometryOut);
+  addOutPort("ultrasonic", m_ultrasonicOut);
+  addOutPort("gyro", m_gyroOut);
+  addOutPort("color", m_colorOut);
+  addOutPort("color_reflect", m_color_reflectOut);
+  addOutPort("touch", m_touchOut);
+  
+  // Set service provider to Ports
+  
+  // Set service consumers to Ports
+  
+  // Set CORBA Service Ports
+  
+  // </rtc-template>
+
+  // <rtc-template block="bind_config">
+  // Bind variables and configuration variable
+  bindParameter("wheelRadius", m_wheelRadius, "0.028");
+  bindParameter("wheelDistance", m_wheelDistance, "0.05925");
+  bindParameter("medium_motor_speed", m_medium_motor_speed, "1.6");
+  // </rtc-template>
+  
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onFinalize()
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onStartup(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onShutdown(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onActivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onDeactivated(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onExecute(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onAborting(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onError(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onReset(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onStateUpdate(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+RTC::ReturnCode_t EducatorVehicle::onRateChanged(RTC::UniqueId ec_id)
+{
+  return RTC::RTC_OK;
+}
+
+
+
+extern "C"
+{
+ 
+  void EducatorVehicleInit(RTC::Manager* manager)
+  {
+    coil::Properties profile(educatorvehicle_spec);
+    manager->registerFactory(profile,
+                             RTC::Create<EducatorVehicle>,
+                             RTC::Delete<EducatorVehicle>);
+  }
+  
+};
+
+

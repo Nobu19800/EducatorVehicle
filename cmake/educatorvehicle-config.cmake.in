@@ -1,0 +1,54 @@
+# EducatorVehicle CMake config file
+#
+# This file sets the following variables:
+# EducatorVehicle_FOUND - Always TRUE.
+# EducatorVehicle_INCLUDE_DIRS - Directories containing the EducatorVehicle include files.
+# EducatorVehicle_IDL_DIRS - Directories containing the EducatorVehicle IDL files.
+# EducatorVehicle_LIBRARIES - Libraries needed to use EducatorVehicle.
+# EducatorVehicle_DEFINITIONS - Compiler flags for EducatorVehicle.
+# EducatorVehicle_VERSION - The version of EducatorVehicle found.
+# EducatorVehicle_VERSION_MAJOR - The major version of EducatorVehicle found.
+# EducatorVehicle_VERSION_MINOR - The minor version of EducatorVehicle found.
+# EducatorVehicle_VERSION_REVISION - The revision version of EducatorVehicle found.
+# EducatorVehicle_VERSION_CANDIDATE - The candidate version of EducatorVehicle found.
+
+message(STATUS "Found EducatorVehicle-@PROJECT_VERSION@")
+set(EducatorVehicle_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(EducatorVehicle_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(EducatorVehicle_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(EducatorVehicle_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(EducatorVehicle_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(EducatorVehicle_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(EducatorVehicle_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(EducatorVehicle_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(EducatorVehicle_VERSION @PROJECT_VERSION@)
+set(EducatorVehicle_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(EducatorVehicle_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(EducatorVehicle_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(EducatorVehicle_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
