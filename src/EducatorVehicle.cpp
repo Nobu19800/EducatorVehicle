@@ -116,6 +116,9 @@ RTC::ReturnCode_t EducatorVehicle::onInitialize()
 
 RTC::ReturnCode_t EducatorVehicle::onFinalize()
 {
+	robot.reset_left_large_motor(ret);
+	robot.reset_right_large_motor(ret);
+	robot.reset_medium_motor(ret);	
   return RTC::RTC_OK;
 }
 
