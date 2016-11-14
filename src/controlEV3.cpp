@@ -578,10 +578,11 @@ void controlEV3::set_image_lcd(std::string file_name, bool &ret)
 			ret = false;
 			return;
 		}
-		char *temp_file_data = new char[file_size];
-		ifs.read(temp_file_data, file_size);
-		memcpy(&fb[0], &temp_file_data[0], sizeof(unsigned char)*buf_size);
-		delete temp_file_data;
+		//char *temp_file_data = new char[file_size];
+		//ifs.read(temp_file_data, file_size);
+		//memcpy(&fb[0], &temp_file_data[0], sizeof(unsigned char)*buf_size);
+		//delete temp_file_data;
+		ifs.read((char*)&fb[0], file_size);
 		ifs.close();
 
 		ret = true;
