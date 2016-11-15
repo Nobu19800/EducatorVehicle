@@ -116,6 +116,7 @@ RTC::ReturnCode_t EducatorVehicle::onInitialize()
 
 RTC::ReturnCode_t EducatorVehicle::onFinalize()
 {
+	bool ret = true;
 	robot.reset_left_large_motor(ret);
 	robot.reset_right_large_motor(ret);
 	robot.reset_medium_motor(ret);	
@@ -239,8 +240,8 @@ RTC::ReturnCode_t EducatorVehicle::onExecute(RTC::UniqueId ec_id)
 	if(m_lcdIn.isNew())
 	{
 		m_lcdIn.read();
-		const char *lcd_data = m_lcd.data;
-		robot.set_image_lcd(lcd_data, ret);
+		//const char *lcd_data = m_lcd.data;
+		robot.set_image_lcd((unsigned char *)&(m_lcd.pixels[0]), ret);
 	}
 
 	if(m_soundIn.isNew())

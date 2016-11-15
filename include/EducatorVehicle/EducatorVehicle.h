@@ -281,13 +281,12 @@ class EducatorVehicle
    * - Unit: rad
    */
   InPort<RTC::TimedDouble> m_angleIn;
-  RTC::TimedString m_lcd;
+  RTC::CameraImage m_lcd;
   /*!
-
    * LCDに表示する画像ファイル名
-   * - Type: RTC::TImedString
+   * - Type: RTC::CamerImage
    */
-  InPort<RTC::TimedString> m_lcdIn;
+  InPort<RTC::CameraImage> m_lcdIn;
   RTC::TimedString m_sound;
   /*!
    * 出力する音声を設定します。

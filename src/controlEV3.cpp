@@ -548,7 +548,7 @@ void controlEV3::stop_medium_motor(bool &ret)
 * @param file_name 表示する画像データ
 * @param ret 設定できた場合はtrue、失敗した場合はfalse
 */
-void controlEV3::set_image_lcd(std::string file_name, bool &ret)
+void controlEV3::set_image_lcd_filename(std::string file_name, bool &ret)
 {
 	ev3dev::lcd lcd = ev3dev::lcd();
 
@@ -588,8 +588,34 @@ void controlEV3::set_image_lcd(std::string file_name, bool &ret)
 		ret = true;
 	}
 	
+	else
+	{
+		ret = false;
+	}
+}
+
+/**
+* @brief LCDの操作
+* @param data 表示する画像データ
+* @param ret 設定できた場合はtrue、失敗した場合はfalse
+*/
+void controlEV3::set_image_lcd(unsigned char* data, bool &ret)
+{
+	ev3dev::lcd lcd = ev3dev::lcd();
+
+
+	unsigned char *fb = lcd.frame_buffer();
+	int buf_size = lcd.frame_buffer_size();
 	
-	ret = false;
+	if(lcd.bits_per_pixel() == 1)
+	{
+		memcpy(&fb[0], &data[0], sizeof(unsigned char)*buf_size);
+		ret = true;
+	}
+	else
+	{
+		ret = false;
+	}
 }
 
 /**

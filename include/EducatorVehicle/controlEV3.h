@@ -240,7 +240,13 @@ class controlEV3
 	* @param file_name 表示する画像データ
 	* @param ret 設定できた場合はtrue、失敗した場合はfalse
 	*/
-	void set_image_lcd(std::string file_name, bool &ret);
+	void set_image_lcd_filename(std::string file_name, bool &ret);
+	/**
+	* @brief LCDの操作
+	* @param data 表示する画像データ
+	* @param ret 設定できた場合はtrue、失敗した場合はfalse
+	*/
+	void set_image_lcd(unsigned char* data, bool &ret);
 	/**
 	* @brief Educator Vehicleの速度(X軸)取得
 	* @return 速度(X軸)
