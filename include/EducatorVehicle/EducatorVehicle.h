@@ -298,9 +298,9 @@ class EducatorVehicle
   InPort<RTC::TimedString> m_soundIn;
   RTC::TimedPose2D m_pos_update;
   /*!
-  * モーターMの角度
-  * - Type: RTC::TimedDouble
-  * - Unit: rad
+  * 現在位置の更新
+  * - Type: RTC::TimedPose2D
+  * - Unit: m,rad
   */
   InPort<RTC::TimedPose2D> m_pos_updateIn;
 

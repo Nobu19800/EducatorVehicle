@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<rtc:RtcProfile rtc:version="0.2" rtc:id="RTC:AIST:MobileRobot:EducatorVehicle:1.0.0" xmlns:rtcExt="http://www.openrtp.org/namespaces/rtc_ext" xmlns:rtcDoc="http://www.openrtp.org/namespaces/rtc_doc" xmlns:rtc="http://www.openrtp.org/namespaces/rtc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="EducatorVehicle" rtc:updateDate="2016-05-17T17:17:10.470+09:00" rtc:creationDate="2016-05-08T20:05:36+09:00" rtc:abstract="レゴ　マインドストーム EV3の制御コンポーネント" rtc:version="1.0.0" rtc:vendor="AIST" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="Educator Vehicle" rtc:category="MobileRobot" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="EducatorVehicle">
+<rtc:RtcProfile rtc:version="0.2" rtc:id="RTC:AIST:MobileRobot:EducatorVehicle:1.0.0" xmlns:rtc="http://www.openrtp.org/namespaces/rtc" xmlns:rtcExt="http://www.openrtp.org/namespaces/rtc_ext" xmlns:rtcDoc="http://www.openrtp.org/namespaces/rtc_doc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <rtc:BasicInfo xsi:type="rtcExt:basic_info_ext" rtcExt:saveProject="EducatorVehicle" rtc:updateDate="2017-04-09T21:52:08.871+09:00" rtc:creationDate="2016-05-08T20:05:36+09:00" rtc:abstract="レゴ　マインドストーム EV3の制御コンポーネント" rtc:version="1.0.0" rtc:vendor="AIST" rtc:maxInstances="1" rtc:executionType="PeriodicExecutionContext" rtc:executionRate="1000.0" rtc:description="Educator Vehicle" rtc:category="MobileRobot" rtc:componentKind="DataFlowComponent" rtc:activityType="PERIODIC" rtc:componentType="STATIC" rtc:name="EducatorVehicle">
         <rtcDoc:Doc rtcDoc:reference="" rtcDoc:license="LGPL" rtcDoc:creator="宮本信彦&lt;br/&gt;n-miyamoto@aist.go.jp&lt;br/&gt;産業技術総合研究所　&lt;br/&gt;ロボットイノベーション研究センター　&lt;br/&gt;ロボットソフトウェアプラットフォーム研究チーム" rtcDoc:algorithm="" rtcDoc:inout="" rtcDoc:description="レゴ　マインドストーム EV3の制御コンポーネント"/>
         <rtcExt:VersionUpLogs></rtcExt:VersionUpLogs>
         <rtcExt:VersionUpLogs></rtcExt:VersionUpLogs>
@@ -48,6 +48,9 @@
     </rtc:DataPorts>
     <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="LEFT" rtcExt:variableName="" rtc:unit="" rtc:subscriptionType="" rtc:dataflowType="" rtc:interfaceType="" rtc:idlFile="" rtc:type="RTC::TimedString" rtc:name="sound" rtc:portType="DataInPort">
         <rtcDoc:Doc rtcDoc:operation="" rtcDoc:occerrence="" rtcDoc:unit="" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="" rtcDoc:description="出力する音声を設定します。&lt;br/&gt;以下のコマンドを使用できます。&lt;br/&gt;beep：ビープ音&lt;br/&gt;tone,周波数,時間:指定周波数の音&lt;br/&gt;コマンドを使用しない場合は入力文字列を発音します。"/>
+    </rtc:DataPorts>
+    <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="LEFT" rtcExt:variableName="" rtc:unit="" rtc:subscriptionType="" rtc:dataflowType="" rtc:interfaceType="" rtc:idlFile="" rtc:type="RTC::TimedPose2D" rtc:name="pos_update" rtc:portType="DataInPort">
+        <rtcDoc:Doc rtcDoc:operation="" rtcDoc:occerrence="" rtcDoc:unit="m,rad" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="RTC::TimedPose2D" rtcDoc:description="現在位置の更新"/>
     </rtc:DataPorts>
     <rtc:DataPorts xsi:type="rtcExt:dataport_ext" rtcExt:position="RIGHT" rtcExt:variableName="" rtc:unit="" rtc:subscriptionType="" rtc:dataflowType="" rtc:interfaceType="" rtc:idlFile="" rtc:type="RTC::TimedPose2D" rtc:name="odometry" rtc:portType="DataOutPort">
         <rtcDoc:Doc rtcDoc:operation="" rtcDoc:occerrence="" rtcDoc:unit="m, m, rad" rtcDoc:semantics="" rtcDoc:number="" rtcDoc:type="RTC::TimedPose2D" rtcDoc:description="現在の位置・姿勢（角度） (x, y, θ) "/>
