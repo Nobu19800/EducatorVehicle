@@ -56,6 +56,7 @@ EducatorVehicle::EducatorVehicle(RTC::Manager* manager)
     m_angleIn("angle", m_angle),
     m_lcdIn("lcd", m_lcd),
     m_soundIn("sound", m_sound),
+    m_pos_updateIn("pos_update", m_pos_update),
     m_odometryOut("odometry", m_odometry),
     m_ultrasonicOut("ultrasonic", m_ultrasonic),
     m_gyroOut("gyro", m_gyro),
@@ -85,6 +86,7 @@ RTC::ReturnCode_t EducatorVehicle::onInitialize()
   addInPort("angle", m_angleIn);
   addInPort("lcd", m_lcdIn);
   addInPort("sound", m_soundIn);
+  addInPort("pos_update", m_pos_updateIn);
   
   // Set OutPort buffer
   addOutPort("odometry", m_odometryOut);
@@ -180,6 +182,12 @@ RTC::ReturnCode_t EducatorVehicle::onExecute(RTC::UniqueId ec_id)
 		m_angleIn.read();
 		robot.set_position_medium_motor(m_angle.data, m_medium_motor_speed, ret);
 	}
+	if(m_pos_updateIn.isNew())
+	{
+		m_pos_updateIn.read();
+		robot.reset_position(m_pos_update.data.position.x, m_pos_update.data.position.y, m_pos_update.data.heading);
+	}
+
 
 	
 	

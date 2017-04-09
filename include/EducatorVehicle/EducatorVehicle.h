@@ -296,6 +296,13 @@ class EducatorVehicle
    * コマンドを使用しない場合は入力文字列を発音します。
    */
   InPort<RTC::TimedString> m_soundIn;
+  RTC::TimedPose2D m_pos_update;
+  /*!
+  * モーターMの角度
+  * - Type: RTC::TimedDouble
+  * - Unit: rad
+  */
+  InPort<RTC::TimedPose2D> m_pos_updateIn;
 
   
   // </rtc-template>

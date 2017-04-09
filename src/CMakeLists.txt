@@ -5,7 +5,15 @@ set(standalone_srcs EducatorVehicleComp.cpp)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=gnu++11")
 
 
-set(ev3dev_dir /home/ev3dev-lang-cpp)
+set(EV3DEV_DIRECTORIY ${EV3DEV_DIRECTORIY} CACHE PATH "set EV3DEV_DIRECTORIY ")
+
+if(NOT EV3DEV_DIRECTORIY)
+	message(FATAL_ERROR "Please set EV3DEV_DIRECTORIY.")
+endif()
+
+
+set(ev3dev_dir ${EV3DEV_DIRECTORIY})
+#set(ev3dev_dir /home/ev3dev-lang-cpp)
 set(ev3dev_lib ${ev3dev_dir}/build/libev3dev.a)
 
 
