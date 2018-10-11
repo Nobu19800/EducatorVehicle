@@ -698,8 +698,8 @@ void controlEV3::update(bool &ret)
 
 
 
-	float r = m_wheelRadius/2.0;
-	float d = m_wheelDistance/2.0;
+	float r = m_wheelRadius;
+	float d = m_wheelDistance;
 	float left_wheel_speed = get_speed_left_large_motor(ret) * r;
 	if(!ret)return;
 	float right_wheel_speed = get_speed_right_large_motor(ret) * r;
@@ -713,13 +713,16 @@ void controlEV3::update(bool &ret)
 	float v = (right_wheel_speed + left_wheel_speed)/2.0;
 	
 	
-	m_vx = v * cos(m_a);
-	m_vy = v * sin(m_a);
-	m_va = o;
+	
 
-	m_px += m_vx*diff_time;
-	m_py += m_vy*diff_time;
-	m_a += m_va*diff_time;
+	m_px += v * cos(m_a) * diff_time;
+	m_py += v * sin(m_a) * diff_time;
+	m_a += o *diff_time;
+
+
+	m_vx = v;
+	m_vy = 0;
+	m_va = o;
 
 	
 	
@@ -735,8 +738,8 @@ void controlEV3::update(bool &ret)
 void controlEV3::set_speed(float vx, float va, bool &ret)
 {
 	ret = true;
-	float r = m_wheelRadius/2.0;
-	float d = m_wheelDistance/2.0;
+	float r = m_wheelRadius;
+	float d = m_wheelDistance;
 
 	float right_motor_speed = (vx + va*d)/r;
 	float left_motor_speed = (vx - va*d)/r;
